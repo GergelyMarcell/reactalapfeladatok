@@ -1,32 +1,24 @@
-import { useState } from "react";
+import { useRef, useState } from "react";
 
 const Homerseklet = () => {
-  const [c, setC] = useState<number>(0);
+  const inputRef = useRef(null);
   const [f, setF] = useState<number>(0);
   const [k, setK] = useState<number>(0);
 
   return (
     <>
       <h2>Hőmérséklet átváltó</h2>
-      <input
-        type="number"
-        placeholder="Homerseklet"
-        onChange={(e) => setC(Number(e.target.value))}
-      />
+      <input type="number" placeholder="Homerseklet" ref={inputRef} />
       <button
         onClick={() => {
-          setF(c * 1.8 + 32);
-          setK(c + 273.15);
+          setF(Number(inputRef.current.value) * 1.8 + 32);
+          setK(Number(inputRef.current.value) + 273.15);
         }}
       >
         Számítás!
       </button>
-      <p>
-        {c} °C = {f} °F
-      </p>
-      <p>
-        {c} °C = {k} °K
-      </p>
+      <p>{f} °F</p>
+      <p>{k} °K</p>
     </>
   );
 };

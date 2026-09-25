@@ -1,30 +1,23 @@
-import { useState } from "react";
+import { useRef, useState } from "react";
 
 const BMI = () => {
-  const [suly, setSuly] = useState<number>(65);
-  const [mag, setMag] = useState<number>(180);
+  const inputRefSuly = useRef(null);
+  const inputRefMag = useRef(null);
   const [bmi, setBmi] = useState<number>(20.1);
   const [eredmeny, setEredmeny] = useState<string>("Normal");
   return (
     <>
       <h2>BMI</h2>
       <label htmlFor="suly">Testsúly (kg)</label>
-      <input
-        id="suly"
-        type="number"
-        placeholder="65"
-        onChange={(e) => setSuly(Number(e.target.value))}
-      />
+      <input id="suly" type="number" placeholder="65" ref={inputRefSuly} />
       <label htmlFor="mag">Magasság (cm)</label>
-      <input
-        id="mag"
-        type="number"
-        placeholder="180"
-        onChange={(e) => setMag(Number(e.target.value))}
-      />
+      <input id="mag" type="number" placeholder="180" ref={inputRefMag} />
       <button
         onClick={() => {
-          setBmi(suly / Math.pow(mag / 100, 2));
+          setBmi(
+            inputRefSuly.current.value /
+              Math.pow(inputRefMag.current.value / 100, 2),
+          );
           if (bmi < 16) {
             setEredmeny("Súlyos soványság");
           } else if (bmi >= 16 && bmi < 17) {
