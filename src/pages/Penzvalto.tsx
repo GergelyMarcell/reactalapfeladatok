@@ -1,9 +1,10 @@
-import { useState } from "react";
+import { useRef, useState } from "react";
 
 const Penzvalto = () => {
-  const [ft, setFt] = useState<number>(1);
+  const inputRef = useRef(null);
+  // const [ft, setFt] = useState<number>(1);
   const [penznem, setPenznem] = useState<string>("€");
-  const [eredmeny, setEredmeny] = useState<number>(0);
+  const [eredmeny, setEredmeny] = useState<string>("");
   return (
     <>
       <h2>Pánzváltó</h2>
@@ -12,7 +13,8 @@ const Penzvalto = () => {
       <input
         id="huf"
         type="number"
-        onChange={(e) => setFt(Number(e.target.value))}
+        ref={inputRef}
+        // onChange={(e) => setFt(Number(e.target.value))}
       />
       <select onChange={(e) => setPenznem(e.target.value)}>
         <option value="€">Euró (€)</option>
@@ -22,19 +24,21 @@ const Penzvalto = () => {
         onClick={() => {
           switch (penznem) {
             case "€":
-              setEredmeny(Number(ft / 380));
+              setEredmeny(
+                `${inputRef.current.value} Ft = ${(inputRef.current.value / 380).toFixed(2)} €`,
+              );
               break;
             case "$":
-              setEredmeny(Number(ft / 350));
+              setEredmeny(
+                `${inputRef.current.value} Ft = ${(inputRef.current.value / 350).toFixed(2)} $`,
+              );
               break;
           }
         }}
       >
         Átváltás!
       </button>
-      <p>
-        {ft}Ft = {eredmeny.toFixed(2)} {penznem}
-      </p>
+      <p>{eredmeny}</p>
     </>
   );
 };
