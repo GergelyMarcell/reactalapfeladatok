@@ -1,7 +1,7 @@
 import { useRef, useState } from "react";
 
 const Penzvalto = () => {
-  const inputRef = useRef(null);
+  const inputRef = useRef<HTMLInputElement>(null);
   // const [ft, setFt] = useState<number>(1);
   const [penznem, setPenznem] = useState<string>("€");
   const [eredmeny, setEredmeny] = useState<string>("");
@@ -25,12 +25,12 @@ const Penzvalto = () => {
           switch (penznem) {
             case "€":
               setEredmeny(
-                `${inputRef.current.value} Ft = ${(inputRef.current.value / 380).toFixed(2)} €`,
+                `${inputRef.current.value} Ft = ${(Number(inputRef.current.value) / 380).toFixed(2)} €`,
               );
               break;
             case "$":
               setEredmeny(
-                `${inputRef.current.value} Ft = ${(inputRef.current.value / 350).toFixed(2)} $`,
+                `${inputRef.current.value} Ft = ${(Number(inputRef.current.value) / 350).toFixed(2)} $`,
               );
               break;
           }

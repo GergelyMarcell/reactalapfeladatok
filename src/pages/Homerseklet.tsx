@@ -1,7 +1,7 @@
 import { useRef, useState } from "react";
 
 const Homerseklet = () => {
-  const inputRef = useRef(null);
+  const inputRef = useRef<HTMLInputElement>(null);
   const [f, setF] = useState<number>(0);
   const [k, setK] = useState<number>(0);
 

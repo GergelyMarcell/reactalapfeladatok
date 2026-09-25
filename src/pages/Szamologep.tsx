@@ -1,8 +1,8 @@
 import { useRef, useState } from "react";
 
 const Szamologep = () => {
-  const inputRef1 = useRef(null);
-  const inputRef2 = useRef(null);
+  const inputRef1 = useRef<HTMLInputElement>(null);
+  const inputRef2 = useRef<HTMLInputElement>(null);
   const [valaszt, setValaszt] = useState<string>("+");
   const [eredmeny, setEredmeny] = useState<string>("");
   return (

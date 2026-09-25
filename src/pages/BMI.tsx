@@ -1,8 +1,8 @@
 import { useRef, useState } from "react";
 
 const BMI = () => {
-  const inputRefSuly = useRef(null);
-  const inputRefMag = useRef(null);
+  const inputRefSuly = useRef<HTMLInputElement>(null);
+  const inputRefMag = useRef<HTMLInputElement>(null);
   const [bmi, setBmi] = useState<number>(20.1);
   const [eredmeny, setEredmeny] = useState<string>("Normal");
   return (
@@ -15,8 +15,8 @@ const BMI = () => {
       <button
         onClick={() => {
           setBmi(
-            inputRefSuly.current.value /
-              Math.pow(inputRefMag.current.value / 100, 2),
+            Number(inputRefSuly.current.value) /
+              Math.pow(Number(inputRefMag.current.value) / 100, 2),
           );
           if (bmi < 16) {
             setEredmeny("Súlyos soványság");
